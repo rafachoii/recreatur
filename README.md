@@ -1,12 +1,10 @@
-# **README**
+# **O PROJETO**
+
+O nosso projeto foi desenvolvido como parte do Projeto Integrador Interdisciplinar, uma das matérias que compõem a grade do curso de Ciência da Computação do Instituto Mauá de Tecnologia, em parceria com a Passatempo Educativo, a fim de colocarmos em prática nossos conhecimentos de Front End adquiridos ao longo do semestre.
 
 ## **Projeto Recreatur**
 
 O RecreaTur é um dos projetos da ONG Passatempo Educativo e integra recreação e turismo para desenvolver habilidades sociais e profissionais, combinando teoria e prática em lazer, planejamento de atividades recreativas, roteiros turísticos e monitoria. O projeto destaca os benefícios da recreação no desenvolvimento pessoal e profissional e amplia a visão dos jovens sobre o turismo como atividade econômica.
-
-## **O PROJETO**
-
-O nosso projeto foi desenvolvido como parte do Projeto Integrador Interdisciplinar, uma das matérias que compõem a grade do curso de Ciência da Computação do Instituto Mauá de Tecnologia, em parceria com a Passatempo Educativo, a fim de colocarmos em prática nossos conhecimentos de Front End adquiridos ao longo do semestre.
 
 ## **Autores e Membros do Projeto**
 | 	Nome	 | 	RA	 | 	GitHub	 | 
