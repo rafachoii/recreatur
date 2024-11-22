@@ -1,6 +1,6 @@
 # **O PROJETO**
 
-O nosso projeto foi desenvolvido como parte do Projeto Integrador Interdisciplinar, uma das matérias que compõem a grade do curso de Ciência da Computação do Instituto Mauá de Tecnologia, em parceria com a Passatempo Educativo, a fim de colocarmos em prática nossos conhecimentos de Front End adquiridos ao longo do semestre.
+O nosso projeto foi desenvolvido como parte do Projeto Integrador Interdisciplinar, uma das matérias que compõem a grade do curso de Ciência da Computação do Instituto Mauá de Tecnologia, em parceria com a ONG Passatempo Educativo, a fim de colocarmos em prática nossos conhecimentos de Front End adquiridos ao longo do semestre.
 
 ## **Projeto Recreatur**
 
