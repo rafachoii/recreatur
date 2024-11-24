@@ -8,7 +8,7 @@ O RecreaTur é um dos projetos da ONG Passatempo Educativo e integra recreação
 
 ## **Autores e Membros do Projeto**
 | 	Nome	 | 	RA	 | 	GitHub	 | 	Função	 |
-| 	:-----:	 | 	:-----:	 | 	:-----:	 | 
+| 	:-----:	 | 	:-----:	 | 	:-----:	 | 	:-----:	 |
 | 	Rafael Yuno Choi	| 	24.01229-7	| 	[rafachoii](https://github.com/rafachoii)	 | 	Dev Front End	|
 | 	Raul Cardoso Prates	| 	24.10124-8 	| 	[raulzz-2201](https://github.com/raulzz-2201)	 | 	Prototipação e Documentação	|
 | 	Gabriel Paques Santos	| 	24.00132-5	| 		 | 	Documentação	|
