@@ -196,7 +196,7 @@ body {
 
 /* específicos */
 
-.quem-somos-titulo {
+.habilidades-do-titulo {
     font-size: 64px; 
     font-style: italic; 
     font-weight: 300;
@@ -204,7 +204,7 @@ body {
     margin-bottom: 5px; 
 }
 
-.passatempo-titulo {
+.futuro-titulo {
     font-size: 72px;
     color: #ED3237; 
     margin: 0; 
@@ -214,4 +214,19 @@ body {
 
 #imagem-sobre-nos {
     border-radius: 15px;
+}
+
+.habilidades-titulos {
+    font-size: 32px;
+    font-style: italic; 
+    font-weight: 400;
+    color: #333;
+}
+
+.habilidades-obs {
+    text-align: center;
+    color: #ED3237; 
+    font-weight: 600;
+    font-style: italic;
+    font-size: 32px;
 }
