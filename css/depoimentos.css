@@ -215,3 +215,11 @@ body {
 #conteudo {
     margin-bottom: 120px;
 }
+
+#video-yt iframe {
+    border-radius: 15px;
+}
+
+.carousel-inner {
+    border-radius: 15px;
+}
