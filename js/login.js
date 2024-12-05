@@ -18,14 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username: email, password }),
+                body: JSON.stringify({ email, password }), 
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 alert("Login realizado com sucesso!");
-                window.location.href = "/dashboard.html";
+                window.location.href = "/paginas/dashboard.html"; 
             } else {
                 alert(data.message || "Erro no login. Tente novamente.");
             }

@@ -34,7 +34,7 @@ db.on('open', () => {
 })
 
 app.register(cors, {
-  origin: 'http://127.0.0.1:64875',
+  origin: 'http://127.0.0.1:53277',
   credentials: true,
   allowedHeaders: ['Set-Cookie', 'Content-Type'],
 })

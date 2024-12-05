@@ -1,18 +1,17 @@
 const z = require('zod')
 
 const loginSchema = z.object({
-  username: z.string(),
+  email: z.string().email(),
   password: z.string(),
 })
 
 const signUpSchema = z.object({
-  username: z.string(),
   email: z.string().email(),
-  password: z.string().min(8),
+  password: z.string().min(6),
 })
 
-const updatePasswordSchema = z.object({
+const forgotPasswordSchema = z.object({
   email: z.string().email('E-mail inválido').min(1, 'O e-mail é obrigatório'),
 })
 
-module.exports = { loginSchema, signUpSchema, updatePasswordSchema }
+module.exports = { loginSchema, signUpSchema, forgotPasswordSchema }

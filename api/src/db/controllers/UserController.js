@@ -1,84 +1,83 @@
-const bcrypt = require('bcryptjs')
-
-const User = require('../models/User')
+const bcrypt = require('bcryptjs');
+const User = require('../models/User');
 
 class UserController {
-  username
-  email
-  password
-  res
+  email;
+  password;
+  res;
 
-  constructor(username, email, password, res) {
-    this.username = username
-    this.email = email
-    this.password = password
-    this.res = res
+  constructor(email, password, res) {
+    this.email = email;
+    this.password = password;
+    this.res = res;
   }
 
   async store() {
-    const hashedPassword = bcrypt.hashSync(this.password, 8)
+    const hashedPassword = bcrypt.hashSync(this.password, 8);
 
     const user = new User({
-      username: this.username,
       email: this.email,
       password: this.password,
       passwordHash: hashedPassword,
       createdAt: new Date(),
-    })
+    });
 
     try {
-      await user.save()
+      await user.save();
+      console.log("Usuário criado com sucesso.");
 
-      await user.save()
+      this.res.status(201).send({ message: 'User created successfully' });
     } catch (err) {
-      this.res
-        .status(400)
-        .send({ message: 'An error occurred while creating the user' })
-    } finally {
-      this.res.status(201).send({ message: 'User created successfully' })
+      console.error("Erro ao criar o usuário:", err);
+      this.res.status(400).send({ message: 'An error occurred while creating the user', error: err.message });
     }
   }
 
-  async validateIfExists(onlyUsername) {
-    if (onlyUsername) {
-      const userExists = await User.find({ username: this.username })
+  async validateIfExists() {
+    const userExists = await User.find({ email: this.email });
+    return userExists.length > 0 ? userExists : false;
+  }
 
-      return userExists.length > 0 ? userExists : false
+  async login() {
+    const user = await User.findOne({ email: this.email });
+    
+    if (!user) {
+      return this.res.status(404).send({ message: 'Usuário não encontrado.' });
+    }
+    
+    const isMatch = bcrypt.compareSync(this.password, user.passwordHash);
+    
+    if (!isMatch) {
+      return this.res.status(401).send({ message: 'Senha incorreta.' });
     }
 
-    const userExists = await User.find({
-      username: this.username,
-      email: this.email,
-    })
-
-    return userExists.length > 0 ? userExists : false
+    this.res.status(200).send({ message: 'Login bem-sucedido.' });
   }
+
 
   async updatePassword(newPassword) {
+    console.log("Atualizando senha para:", this.email);
+  
     try {
-      const user = await User.findOne({ email: this.email })
-
+      const user = await User.findOne({ email: this.email });
+  
       if (!user) {
-        return this.res
-          .status(404)
-          .send({ message: `User with email: ${this.email} wasn't found` })
+        throw new Error("Usuário não encontrado.");
       }
-
-      const hashedPassword = bcrypt.hashSync(newPassword, 8)
-      user.password = newPassword
-      user.passwordHash = hashedPassword
-
-      await user.save()
-
-      return this.res.status(200).send({
-        message: `Password updated successfully for user ${this.email}`,
-      })
-    } catch (e) {
-      return this.res
-        .status(500)
-        .send({ message: `Error updating password for user ${this.email}` })
+  
+      const hashedPassword = bcrypt.hashSync(newPassword, 8);
+  
+      user.password = newPassword;  
+      user.passwordHash = hashedPassword;  
+  
+      await user.save();
+  
+      console.log("Senha atualizada com sucesso.");
+    } catch (error) {
+      console.error("Erro ao atualizar a senha:", error);
+      throw new Error("Erro ao atualizar a senha no banco de dados.");
     }
-  }
+  }  
 }
 
-module.exports = UserController
+module.exports = UserController;

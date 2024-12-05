@@ -13,7 +13,6 @@ async function signUp(app) {
       }
 
       const userController = new UserController(
-        signUpInformations.data.username,
         signUpInformations.data.email,
         signUpInformations.data.password,
         res
@@ -27,7 +26,7 @@ async function signUp(app) {
         return res
           .status(400)
           .send({
-            message: `User "${signUpInformations.data.username}" already exists`,
+            message: `User "${signUpInformations.data.email}" already exists`,
           })
       }
 
