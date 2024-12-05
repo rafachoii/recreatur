@@ -1,18 +1,16 @@
 const Message = require('../models/Message')
 
 class MessageController {
-  id
   name 
   email 
-  phone 
+  subject
   message
   res
 
-  constructor(id, name, email, phone, message, res) {
-    this.id = id
+  constructor(name, email, subject, message, res) {
     this.name = name
     this.email = email
-    this.phone = phone
+    this.subject = subject
     this.message = message
     this.res = res
   }
@@ -21,7 +19,7 @@ class MessageController {
     const message = new Message({
       email: this.email,
       name: this.name,
-      phone: this.phone,
+      subject: this.subject,
       message: this.message,
     })
 

@@ -211,3 +211,9 @@ body {
     text-transform: uppercase; 
     margin-bottom: 10px;
 }
+
+.gradient-custom-2 {
+    background: linear-gradient(to right, #EB6D0B, #ED3237);
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+}

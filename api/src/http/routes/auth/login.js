@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs'); 
 const jwt = require('jsonwebtoken');
 
 const UserController = require('../../../db/controllers/UserController');
@@ -24,30 +24,37 @@ async function login(app) {
     try {
       const user = await userController.validateIfExists();
 
-      if (!user || user.length === 0) {
+      if (!user) {
         return res.status(400).send({ message: 'User not found' });
+      }
+
+      console.log('Login Information:', loginInformations.data);
+      console.log('User found:', user);
+
+      if (!user.password) {  
+        return res.status(500).send({ message: 'Password hash not found' });
       }
 
       const passwordIsValid = bcrypt.compareSync(
         loginInformations.data.password,
-        user[0].passwordHash 
+        user.password
       );
+
       if (!passwordIsValid) {
         return res.status(401).send({ message: 'Invalid password' });
       }
 
       const token = jwt.sign(
         {
-          id: user[0]._id,
-          email: user[0].email,
-          isAdmin: user[0].email === 'admin@admin.com', 
+          id: user._id,
+          email: user.email,
+          isAdmin: user.isAdmin, 
         },
         env.JWT_SECRET,
         {
-          expiresIn: '24h', // 24 horas
+          expiresIn: '24h',
         }
       );
-
 
       res.setCookie('token', token, {
         httpOnly: true,

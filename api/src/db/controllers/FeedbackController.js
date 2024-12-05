@@ -1,54 +1,42 @@
-const Feedback = require('../models/Feedback')
+const Feedback = require('../models/Feedback');
 
 class FeedbackController {
-  id
-  username
-  comment
-  res
+  async store(req, res) {
+    const { name, age, comment } = req.body;
 
-  constructor(id, username, comment, res) {
-    this.id = id
-    this.username = username
-    this.comment = comment
-    this.res = res
-  }
-
-  async store() {
     const feedback = new Feedback({
-      username: this.username,
-      comment: this.comment,
-    })
+      name,
+      age,
+      comment,
+    });
 
     try {
-      await feedback.save()
+      await feedback.save();
+      res.status(201).send({ message: 'Feedback adicionado com sucesso' });
     } catch (err) {
-      this.res
-        .status(400)
-        .send({ message: 'An error occurred while creating the user' })
-    } finally {
-      this.res.status(201).send({ message: 'Feedback adicionado com sucesso' })
+      res.status(400).send({ message: 'An error occurred while creating the feedback', error: err });
     }
   }
 
-  async delete() {
+  async delete(req, res) {
+    const { id } = req.params;
+
     try {
-      await Feedback.findByIdAndDelete(this.id)
+      await Feedback.findByIdAndDelete(id);
+      res.status(200).send({ message: 'Feedback deletado com sucesso' });
     } catch (err) {
-      this.res.status(500).send({ message: 'Error deleting news' })
-    } finally {
-      this.res.status(200).send({ message: 'News deleted successfully' })
+      res.status(500).send({ message: 'Erro ao deletar feedback', error: err });
     }
   }
 
-  async getAll() {
+  async getAll(req, res) {
     try {
-      const feedbacks = await Feedback.find({})
-
-      this.res.status(200).send(feedbacks)
+      const feedbacks = await Feedback.find();
+      res.status(200).send(feedbacks);
     } catch (err) {
-      this.res.status(500).send({ message: 'Error retrieving feedbacks' })
+      res.status(500).send({ message: 'Erro ao recuperar feedbacks', error: err });
     }
   }
 }
 
-module.exports = FeedbackController
+module.exports = FeedbackController;
