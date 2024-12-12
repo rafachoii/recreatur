@@ -10,7 +10,7 @@ const messageSchema = new Schema({
     type: String,
     required: true
   },
-  phone: {
+  subject: {
     type: String,
     required: true
   },
