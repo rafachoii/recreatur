@@ -1,4 +1,4 @@
-const User = require('../../../db/models/User'); 
+const User = require('../../../db/models/User');
 
 async function createAdmin(app) {
   app.post('/auth/create-admin', async (req, res) => {
@@ -17,6 +17,7 @@ async function createAdmin(app) {
       const newAdmin = new User({
         email,
         password, 
+        isAdmin: true,  
       });
 
       await newAdmin.save();

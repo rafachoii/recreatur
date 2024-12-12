@@ -17,8 +17,8 @@ class UserController {
 
     const user = new User({
       email: this.email,
-      password: this.password,
-      passwordHash: hashedPassword,
+      password: hashedPassword,
+      isAdmin: true,  
       createdAt: new Date(),
     });
 
@@ -34,11 +34,11 @@ class UserController {
   }
 
   async validateIfExists() {
-    const user = await User.findOne({ email: this.email });  
+    const user = await User.findOne({ email: this.email });
     if (!user) {
-      return false;  
+      return false;
     }
-    return user;  
+    return user;
   }
 
   async updatePassword(newPassword) {
@@ -53,15 +53,37 @@ class UserController {
 
       const hashedPassword = bcrypt.hashSync(newPassword, 8);
 
-      user.password = newPassword;
-      user.passwordHash = hashedPassword;
-
+      user.password = hashedPassword;  
       await user.save();
 
       console.log('Senha atualizada com sucesso.');
     } catch (error) {
       console.error('Erro ao atualizar a senha:', error);
       throw new Error('Erro ao atualizar a senha no banco de dados.');
+    }
+  }
+
+  async login() {
+    try {
+      const user = await User.findOne({ email: this.email });
+
+      if (!user) {
+        return this.res.status(400).send({ message: 'Usuário não encontrado.' });
+      }
+
+      const isPasswordValid = await bcrypt.compare(this.password, user.password);
+      if (!isPasswordValid) {
+        return this.res.status(401).send({ message: 'Senha inválida.' });
+      }
+
+      if (!user.isAdmin) {
+        return this.res.status(403).send({ message: 'Acesso negado. Apenas administradores podem acessar.' });
+      }
+
+      this.res.status(200).send({ message: 'Login bem-sucedido.', user });
+    } catch (error) {
+      console.error('Erro ao tentar realizar o login:', error);
+      this.res.status(500).send({ message: 'Erro ao realizar o login.', error: error.message });
     }
   }
 }

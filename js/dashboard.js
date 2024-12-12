@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 alert("Acesso negado. Apenas administradores podem acessar esta página.");
                 window.location.href = "/paginas/login.html"; 
             } else {
-                document.querySelector("#username").textContent = data.user.username; 
+                
             }
         } else {
             alert("Usuário não autenticado. Faça login novamente.");

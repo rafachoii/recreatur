@@ -35,7 +35,7 @@ db.on('open', () => {
 });
 
 app.register(cors, {
-  origin: 'http://127.0.0.1:53277',
+  origin: 'http://127.0.0.1:61761',
   credentials: true,
   allowedHeaders: ['Set-Cookie', 'Content-Type'],
 });
@@ -65,7 +65,6 @@ const verifyAdmin = async (req, reply) => {
   }
 };
 
-// Registrando as rotas
 app.register(signUp);
 app.register(login);
 app.register(createAdmin);
